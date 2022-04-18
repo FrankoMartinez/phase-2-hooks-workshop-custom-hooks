@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 function getLocalStorageValue(key) {
   const storedValue = localStorage.getItem(key);
   try {
@@ -53,14 +52,25 @@ export function useLocalStorage(key, initialValue = null) {
    an array with state and a setState function
   */
   // 👀 return [state, setState]
-  return [ state, setState ]
+  return [state, setState]
+}
+
+export default function App() {
+  return (
+    <div>
+      <h2>useLocalStorage can save string</h2>
+      <Form />
+      <hr />
+      <h2>useLocalStorage can save objects (Bonus)</h2>
+      <FormWithObject />
+    </div>
+  );
 }
 
 function Form() {
   // ✅ after implementing the useLocalStorage hook, replace useState with useLocalStorage
   // don't forget to pass in both arguments (a key and an initialValue)
   const [name, setName] = useLocalStorage("_solution_3_username", "");
-  console.log(name);
 
   return (
     <form style={{ display: "flex", flexDirection: "column" }}>
@@ -96,17 +106,5 @@ function FormWithObject() {
         onChange={handleChange}
       />
     </form>
-  );
-}
-
-export default function App() {
-  return (
-    <div>
-      <h2>useLocalStorage can save string</h2>
-      <Form />
-      <hr />
-      <h2>useLocalStorage can save objects (Bonus)</h2>
-      <FormWithObject />
-    </div>
   );
 }
